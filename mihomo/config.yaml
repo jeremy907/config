@@ -9,6 +9,7 @@ proxy-providers:
     proxy: 🟢 直连
     url: "https://substore.goldencorn.one:8443/C2tsn4ajBTSycvcWnSQs/download/collection/mysub?target=ClashMeta"
  
+
 unified-delay: true
 tcp-concurrent: true
 global-client-fingerprint: chrome
@@ -70,10 +71,11 @@ proxy-groups:
   - {name: 🌐 全部节点, type: select, include-all: true}
 rules:
   - RULE-SET,private_domain,🟢 直连
-  - RULE-SET,direct1,🟢 直连
+  - RULE-SET,direct_domain,🟢 直连
+  - RULE-SET,direct_ip,🟢 直连
   - RULE-SET,apple_domain,🍎 Apple
   - RULE-SET,proxylite,🚀 节点选择
-  - RULE-SET,ai,🤖 ChatGPT
+  - RULE-SET,openai_domain,🤖 ChatGPT
   - RULE-SET,github_domain,👨🏿‍💻 GitHub
   - RULE-SET,youtube_domain,📹 YouTube
   - RULE-SET,google_domain,🍀 Google
@@ -99,9 +101,10 @@ rule-anchor:
   class: &class {type: http, interval: 86400, behavior: classical, format: text}
 rule-providers: 
   private_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/private.mrs" }
-  direct1: { <<: *class, url: "https://raw.githubusercontent.com/qcyhub/rule/master/Direct.list" }
-  proxylite: { <<: *class, url: "https://raw.githubusercontent.com/qcyhub/rule/master/ProxyLite.list" }
-  ai: { <<: *class, url: "https://raw.githubusercontent.com/qcyhub/rule/master/AI.list" }
+  direct_domain: { <<: *class, url: "https://raw.githubusercontent.com/jeremy907/rules/refs/heads/main/direct_domain.list" }
+  direct_ip: { <<: *class, url: "https://raw.githubusercontent.com/jeremy907/rules/refs/heads/main/direct_ip.list" }
+  proxylite: { <<: *class, url: "https://raw.githubusercontent.com/jeremy907/rules/refs/heads/main/proxylite.list" }
+  openai_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/openai.mrs" }
   youtube_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/youtube.mrs" }
   google_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google.mrs" }
   github_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/github.mrs" }
